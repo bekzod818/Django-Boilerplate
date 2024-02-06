@@ -1,0 +1,37 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="16">
+            <item index="0" class="java.lang.String" itemvalue="django-azure-communication-email" />
+            <item index="1" class="java.lang.String" itemvalue="gql" />
+            <item index="2" class="java.lang.String" itemvalue="sentry-sdk" />
+            <item index="3" class="java.lang.String" itemvalue="azure-storage-blob" />
+            <item index="4" class="java.lang.String" itemvalue="Django" />
+            <item index="5" class="java.lang.String" itemvalue="django-redis" />
+            <item index="6" class="java.lang.String" itemvalue="fake-useragent" />
+            <item index="7" class="java.lang.String" itemvalue="django-rq" />
+            <item index="8" class="java.lang.String" itemvalue="azure-core" />
+            <item index="9" class="java.lang.String" itemvalue="pre-commit" />
+            <item index="10" class="java.lang.String" itemvalue="ddtrace" />
+            <item index="11" class="java.lang.String" itemvalue="pydantic_core" />
+            <item index="12" class="java.lang.String" itemvalue="typing_extensions" />
+            <item index="13" class="java.lang.String" itemvalue="fastapi" />
+            <item index="14" class="java.lang.String" itemvalue="django" />
+            <item index="15" class="java.lang.String" itemvalue="pymongo" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

@@ -1,0 +1,13 @@
+django
+psycopg2-binary
+python-environ
+django-cors-headers
+django-jazzmin
+drf-yasg
+djangorestframework
+django-filter
+django-modeltranslation
+django-redis
+cryptography==41.0.7
+django-recaptcha==3.0.0
+nplusone==1.0.0
