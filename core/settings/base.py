@@ -31,7 +31,7 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG")
+DEBUG = env.bool("DEBUG", False)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -56,7 +56,7 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     "modeltranslation",
     "captcha",
-    'nplusone.ext.django',
+    "nplusone.ext.django",
 ]
 
 REST_FRAMEWORK = {
@@ -83,7 +83,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'nplusone.ext.django.NPlusOneMiddleware',
+    "nplusone.ext.django.NPlusOneMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -139,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-NPLUSONE_LOGGER = logging.getLogger('nplusone')
+NPLUSONE_LOGGER = logging.getLogger("nplusone")
 NPLUSONE_LOG_LEVEL = logging.WARN
 
 LOGGING = {
@@ -173,7 +173,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "static"
-STATICFILES_DIRS = (BASE_DIR / "staticfiles",)
+STATICFILES_DIRS = [
+    BASE_DIR / "staticfiles"
+]
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
