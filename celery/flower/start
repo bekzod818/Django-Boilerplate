@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# To update run
+pip install --upgrade pip
+
+# Install required packages (change this if needed)
+pip install -r requirements/develop.txt
+
+worker_ready() {
+    celery -A core inspect ping
+}
+
+until worker_ready; do
+  >&2 echo 'Celery workers not available'
+  sleep 1
+done
+>&2 echo 'Celery workers is available'
+
+celery -A core  \
+    --broker="${CELERY_BROKER_URL}" \
+    flower

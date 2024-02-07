@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# To update run
+pip install --upgrade pip
+
+# Install required packages (change this if needed)
+pip install -r requirements/develop.txt
+
+rm -f './celerybeat.pid'
+celery -A core beat -l INFO

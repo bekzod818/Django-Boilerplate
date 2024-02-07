@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# To update run
+pip install --upgrade pip
+
+# Install required packages (change this if needed)
+pip install -r requirements/develop.txt
+
+watchfiles \
+  --filter python \
+  'celery -A core worker --loglevel=info'

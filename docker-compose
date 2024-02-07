@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ $1 == "build" ]; then
+  docker-compose -f docker-compose.dev.yml build
+elif [ $1 == "up" ]; then
+  docker-compose -f docker-compose.dev.yml up -d
+elif [ $1 == "logs" ]; then
+  docker-compose -f docker-compose.dev.yml logs -f
+elif [ $1 == "migrate" ]; then
+  docker-compose -f docker-compose.dev.yml exec web python manage.py migrate
+elif [ $1 == "makemigrations" ]; then
+  docker-compose -f docker-compose.dev.yml exec web python manage.py makemigrations
+elif [ $1 == "merge" ]; then
+  docker-compose -f docker-compose.dev.yml exec web python manage.py makemigrations --merge
+elif [ $1 == "test" ]; then
+  docker-compose -f docker-compose.dev.yml exec web python manage.py test
+elif [ $1 == "makemessages" ]; then
+  docker-compose -f docker-compose.dev.yml exec web python manage.py makemessages
+elif [ $1 == "compilemessages" ]; then
+  docker-compose -f docker-compose.dev.yml exec web python manage.py compilemessages
+elif [ $1 == "createsuperuser" ]; then
+  docker-compose -f docker-compose.dev.yml exec web python manage.py createsuperuser
+elif [ $1 == "collectstatic" ]; then
+  docker-compose -f docker-compose.dev.yml exec web python manage.py collectstatic
+elif [ $1 == "shell" ]; then
+  docker-compose -f docker-compose.dev.yml exec web python manage.py shell
+fi

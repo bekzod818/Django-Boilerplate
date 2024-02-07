@@ -1,7 +1,16 @@
 # Django-Boilerplate
 Django-Boilerplate for start a new project
 
-## How to set up project
+## How to set up project (with Docker)
+
+Give permission to docker script: ```chmod +x ./docker-compose```
+Give permission to docker script: ```chmod +x entrypoint.dev.sh```
+
+### Docker compose file
+Build and docker up containers: ```docker-compose -f docker-compose.dev.yml up -d --build```
+
+### Use docker-compose file
+```./docker-compose makemigrations``` or ```docker-compose -f docker-compose.dev.yml exec backend python manage.py makemigrations```
 
 ## How to run project locally bash script (Linux, Mac)
 
