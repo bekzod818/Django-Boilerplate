@@ -1,0 +1,106 @@
+version: "3.7"
+
+services:
+  db:
+    container_name: ${PROJECT_NAME}_db
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    ports:
+      - 5433:5433
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_HOST=${DB_HOST}
+      - POSTGRES_PORT=${DB_PORT}
+    restart: always
+
+  web: &web
+    container_name: ${PROJECT_NAME}_backend
+    restart: always
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: ./entrypoint.dev.sh
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - ./:/app
+      - ./static:/home/app/web/static
+      - ./media:/home/app/web/media
+      - ./locale:/home/app/web/locale
+    env_file:
+      - .env
+    environment:
+      - TZ=Asia/Tashkent
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - redis
+
+#  daphne:
+#    <<: *web
+#    container_name: ${PROJECT_NAME}_ws
+#    command: python -m daphne -b 0.0.0.0 -p 8893 core.asgi:application
+#    ports:
+#      - 8893:8893
+
+  redis:
+    container_name: ${PROJECT_NAME}_redis
+    image: redis:7.2.4-alpine
+    restart: always
+
+  celery_worker:
+    container_name: ${PROJECT_NAME}_celery_worker
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: celery_worker
+    command: /start-celeryworker
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - db
+
+  celery_beat:
+    container_name: ${PROJECT_NAME}_celery_beat
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: celery_beat
+    command: /start-celerybeat
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - db
+
+  flower:
+    container_name: ${PROJECT_NAME}_celery_flower
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: celery_flower
+    command: /start-flower
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - 5557:5555
+    depends_on:
+      - redis
+      - db
+
+volumes:
+  postgres_data:
+  static_volume:
