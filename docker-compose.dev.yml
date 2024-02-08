@@ -47,7 +47,7 @@ services:
 #    container_name: ${PROJECT_NAME}_ws
 #    command: python -m daphne -b 0.0.0.0 -p 8893 core.asgi:application
 #    ports:
-#      - 8893:8893
+#      - '8893:8893'
 
   redis:
     container_name: ${PROJECT_NAME}_redis
