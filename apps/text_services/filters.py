@@ -3,11 +3,18 @@ from functools import reduce
 from typing import List
 
 from django.db.models import Q
-from rest_framework.compat import distinct
+from django.conf import settings
 from rest_framework.filters import SearchFilter
 
 from apps.text_services import cyrillic_latin_translator
 from apps.text_services.q_processors import QLatinCyrillicProcessor
+
+
+def distinct(queryset, base):
+    if settings.DATABASES[queryset.db]["ENGINE"] == "django.db.backends.oracle":
+        # distinct analogue for Oracle users
+        return base.filter(pk__in=set(queryset.values_list('pk', flat=True)))
+    return queryset.distinct()
 
 
 class MultiSymbolSearchFilter(SearchFilter):

@@ -66,5 +66,50 @@ pip install pre-commit
 pre-commit install
 ```
 
-# [Back-End checklist](https://ruzimurodovnodirjon.notion.site/ruzimurodovnodirjon/Backend-Checklist-90f8dd9a09744d19a7b43cd0aa77d9ad) you must check your project by checklist
+# Back-End Checklist
 
+## 1. Environment Configuration:
+- [ ] Ensure that the Django project settings are properly configured for the production environment.
+- [ ] Set `DEBUG` to `False` in the production settings (`settings.py`).
+- [ ] Verify that the `ALLOWED_HOSTS` setting includes the production domain names or IP addresses.
+
+## 2. Security:
+- [ ] Secure sensitive data, such as secret keys and database credentials, by storing them in environment variables or a secure secrets management system.
+- [ ] Implement Cross-Site Request Forgery (CSRF) protection.
+- [ ] Require Google reCAPTCHA in login forms.
+
+## 3. Database:
+- [ ] Ensure all migrations are correctly created.
+- [ ] Optimize database queries for performance.
+
+## 4. Static and Media Files:
+- [ ] Collect and compress static files using `collectstatic` and configure their storage.
+- [ ] Handle user-uploaded media files securely and efficiently.
+- [ ] Compress media files.
+- [ ] Create media models for all media.
+
+## 5. Logging and Monitoring:
+- [ ] Implement monitoring and alerting using tools like Prometheus, Grafana, Flower, and Sentry (must-have).
+
+## 6. Performance Optimization:
+- [ ] Profile and optimize database queries, views, and templates for performance (use `DEBUGTOOLBAR`, `django-silk`).
+- [ ] Implement caching mechanisms for frequently accessed data (depends on project).
+- [ ] Configure web server settings, such as Gunicorn or Uvicorn, for optimal performance.
+
+## 7. Testing:
+- [ ] Conduct integration tests and unit tests.
+- [ ] Set up a staging environment that closely mirrors the production environment for testing purposes (if needed).
+
+## 8. Documentation:
+- [ ] Ensure that the codebase is well-documented, including comments and docstrings, and add API documentation to Swagger.
+
+## 9. Common Coding Requirements:
+- [ ] Implement pre-commit hooks.
+- [ ] Use appropriate branches like `dev` and `master`.
+- [ ] Add search history API.
+- [ ] Implement initial notifications.
+- [ ] Provide a complete README (including deployment and project setup guide).
+- [ ] Use Docker for production deployment.
+
+## 10. Testing the Production Environment:
+- [ ] Conduct load testing to ensure the application can handle expected traffic volumes (using Locust.io).
