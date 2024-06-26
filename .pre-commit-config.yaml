@@ -24,7 +24,7 @@ repos:
         entry: black
         language: system
         types: [ python ]
-        args: [ --target-version=py310, --target-version=py311 ]
+        args: [ --target-version=py310, --target-version=py310 ]
   #   Why are Flake8’s E203 and W503 violated?
   # Because they go against PEP 8. E203 falsely triggers on list slices, and adhering to W503 hinders readability
   #  because operators are misaligned. Disable W503 and enable the disabled-by-default counterpart W504.
@@ -71,13 +71,13 @@ repos:
       - id: migrations-check
         language: system
         name: Check for uncreated migrations.
-        entry: bash -c "docker-compose -f docker-compose.dev.yml exec -T backend python manage.py makemigrations --check --dry-run"
+        entry: bash -c "docker-compose -f docker-compose.dev.yml exec -T web python manage.py makemigrations --check --dry-run"
         types: [ "python" ]
         pass_filenames: false
 
       - id: django-test
         name: django-test
-        entry: bash -c "docker-compose -f docker-compose.dev.yml exec -T backend python manage.py test"
+        entry: bash -c "docker-compose -f docker-compose.dev.yml exec -T web python manage.py test"
         always_run: true
         pass_filenames: false
         language: system
