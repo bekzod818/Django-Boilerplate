@@ -10,7 +10,7 @@ Give permission to docker script: ```chmod +x entrypoint.dev.sh```
 Build and docker up containers: ```docker-compose -f docker-compose.dev.yml up -d --build```
 
 ### Use docker-compose file
-```./docker-compose makemigrations``` or ```docker-compose -f docker-compose.dev.yml exec backend python manage.py makemigrations```
+```./docker-compose makemigrations``` or ```docker-compose -f docker-compose.dev.yml exec web python manage.py makemigrations```
 
 ## How to run project locally bash script (Linux, Mac)
 
